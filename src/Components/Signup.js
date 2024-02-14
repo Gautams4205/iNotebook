@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import NoteContext from "../Context/notes/NoteContext";
 
 export default function Signup() {
-  const { showalert } = useContext(NoteContext);
+  const { showalert,Mode } = useContext(NoteContext);
   const [credentials, Setcredentials] = useState({
     name: "",
     email: "",
@@ -41,7 +41,8 @@ export default function Signup() {
   };
 
   return (
-    <div className="container mt-3">
+    <div
+      className={`container mt-3 text-${Mode === "light" ? "dark" : "info"}`}>
       <h2>Signup to iNotebook</h2>
       <form className="container" onSubmit={handleonSubmit}>
         <div className="mb-3">

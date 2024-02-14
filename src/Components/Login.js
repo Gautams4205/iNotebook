@@ -4,7 +4,7 @@ import NoteContext from "../Context/notes/NoteContext";
 
 function Login() {
   const [credentials, Setcredentials] = useState({ email: "", password: "" });
-  const { showalert } = useContext(NoteContext);
+  const { showalert,Mode } = useContext(NoteContext);
   const navigate = useNavigate();
   const handleonSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +32,8 @@ function Login() {
     Setcredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   return (
-    <div className="container mt-2">
+    <div className={`container mt-2 text-${
+                Mode === "light" ? "dark" : "info"}`}>
       <h2>Login to iNotebook.</h2>
       <form className="container" onSubmit={handleonSubmit}>
         <div className="mb-3">

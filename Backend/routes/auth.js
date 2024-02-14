@@ -14,7 +14,7 @@ router.post(
     // Checking user has provided real credentials.
     body("name").isLength({ min: 4 }),
     body("email", "Enter a valid email").isEmail(),
-    body("password").isLength({ min: 5 }),
+    body("password","Password cannot be blank").notEmpty(),
   ],
   async (req, res) => {
     const result = validationResult(req);
@@ -52,12 +52,11 @@ router.post(
         //     res.status(400).send(err.message);
         //   });
       } catch (error) {
-        console.log(error.message);
         res.status(500).json({ success, error: "Internal server error." });
       }
     } else {
       //Showing eroor in user's credentials enter in request body.
-      res.status(400).json({ success,error: result.array() });
+      return res.status(400).json({ success, error: result.array() });
     }
   }
 );
